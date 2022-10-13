@@ -159,6 +159,10 @@ function fix_errors_in_music_file () {
 
 function wait_for_archive_to_be_unreachable () {
   log "Waiting for archive to be unreachable..."
+  
+  sleep 1
+  simulate_archive_unreachable
+  
   while [ true ]
     do
       if ! retry archive_is_reachable
@@ -241,6 +245,12 @@ function truncate_log () {
     tail -n 10000 "$LOG_FILE" > "${LOG_FILE}.2"
 	mv "$log_file2" "$LOG_FILE"
   fi
+}
+
+function simulate_archive_unreachable () {
+  log "Simulating archive_unreachable..."
+  touch /tmp/archive_is_unreachable
+  sleep 3600
 }
 
 export -f mount_mountpoint

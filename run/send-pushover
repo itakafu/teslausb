@@ -5,6 +5,7 @@ NUM_FILES_MOVED="$1"
 function log () {
   echo "$( date )" >> "$LOG_FILE"
   echo "$1" >> "$LOG_FILE"
+  echo "TEST"
 }
 
 if [ -r "/root/.teslaCamPushoverCredentials" ] && [ $NUM_FILES_MOVED -gt 0 ]
